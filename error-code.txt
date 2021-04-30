@@ -1,0 +1,10 @@
+user - 1XXX
+
+1001 - no authen header
+1002 - user & password not match
+1003 - code error 
+
+order 
+400 - client id not found
+403 - permission deny on google sheet
+404 - sheet not found
