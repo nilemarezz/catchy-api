@@ -39,7 +39,7 @@ exports.patchOrderByOrderId = async (req, res, next) => {
     console.log(req.body)
     res.status(200).json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, method: 'patch orders  ' + req.params.id });
+    res.status(500).json({ success: false, code: err.response ? err.response.status : 405 });
   }
 }
 

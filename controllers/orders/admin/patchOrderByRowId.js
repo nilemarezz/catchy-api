@@ -33,7 +33,7 @@ exports.patchOrderById = async (req, res, next) => {
     await rows[id].save();
     res.status(200).json({ success: true, method: 'patch orders ' + req.params.id });
   } catch (err) {
-    res.status(500).json({ success: false, method: 'patch orders  ' + req.params.id });
+    res.status(500).json({ success: false, code: err.response ? err.response.status : 405 });
   }
 }
 

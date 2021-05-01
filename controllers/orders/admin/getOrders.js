@@ -17,7 +17,6 @@ exports.getOrders = async (req, res, next) => {
     const sheet = doc.sheetsByTitle[date];
     const rows = await sheet.getRows();
     const data = []
-    console.log(rows[0])
     for (let i = 0; i < rows.length; i++) {
       data.push({
         "id": i,
@@ -32,8 +31,7 @@ exports.getOrders = async (req, res, next) => {
     }
     res.status(200).json({ success: true, data: data });
   } catch (err) {
-    console.log(err)
-    res.status(500).json({ success: false, code: err.response.status });
+    res.status(500).json({ success: false, code: err.response ? err.response.status : 405 });
   }
 }
 

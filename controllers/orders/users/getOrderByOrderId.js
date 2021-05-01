@@ -37,7 +37,7 @@ exports.getOrderByOrderId = async (req, res, next) => {
     res.status(200).json({ success: true, data: filter });
   } catch (err) {
     console.log(err)
-    res.status(500).json({ success: false, code: err.response.status });
+    res.status(500).json({ success: false, code: err.response ? err.response.status : 405 });
   }
 }
 

@@ -15,7 +15,7 @@ exports.getOrderById = async (req, res, next) => {
     });
     await doc.loadInfo();
     const sheet = doc.sheetsByTitle[date];
-    const rows = await sheet.getRows({ options: { rowNumber: 3 } });
+    const rows = await sheet.getRows();
     const index = parseInt(req.params.id) + 1
     const data = {
       "id": index,
@@ -38,10 +38,9 @@ exports.getOrderById = async (req, res, next) => {
       "shop": shop
     }
 
-    res.status(200).json({ success: true, data: data });
+    await res.status(200).json({ success: true, data: data });
   } catch (err) {
-    console.log(err)
-    res.status(500).json({ success: false, code: err.response.status });
+    // console.log('errer in'err)
+    res.status(500).json({ success: false, code: err.response ? err.response.status : 405 });
   }
 }
-
