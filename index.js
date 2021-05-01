@@ -21,5 +21,5 @@ app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
 
 app.listen(process.env.PORT || 5000, process.env.YOUR_HOST || '0.0.0.0', () => {
-  console.log('Catchy API run at port ' + PORT)
+  console.log('Catchy API run at port ' + process.env.PORT || 5000)
 })
