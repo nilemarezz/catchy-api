@@ -12,6 +12,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get("/api", (req, res) => {
+  res.json({ success: true })
+})
 app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
 
