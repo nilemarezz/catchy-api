@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/nilemarezz/catchy-api.git"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
