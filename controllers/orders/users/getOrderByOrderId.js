@@ -30,6 +30,9 @@ exports.getOrderByOrderId = async (req, res, next) => {
         "price": rows[i]['ราคาขาย'] || null,
         "payment_status": rows[i]['สถานะการจ่ายเงิน'] || null,
         "image_link": rows[i]['image_link'] || null,
+        "pay_amount": rows[i]['ยอดที่โอน'] || null,
+        "shipping_price": rows[i]['ค่าส่งที่เก็บ'] || null,
+        "payment_method": rows[i]['การจัดส่ง'] || null,
         "date": date,
         "shop": shop
       })
