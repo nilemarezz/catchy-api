@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/api", (req, res) => {
-  res.json({ success: true })
+  res.json({ success: true, user: process.env.CATCHY_USERNAME })
 })
 app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
