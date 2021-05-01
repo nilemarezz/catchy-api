@@ -20,8 +20,6 @@ app.get("/api", (req, res) => {
 app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
 
-const PORT = 8080 || process.env.PORT
-
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 5000, process.env.YOUR_HOST || '0.0.0.0', () => {
   console.log('Catchy API run at port ' + PORT)
 })
