@@ -7,6 +7,7 @@ exports.getOrderById = async (req, res, next) => {
   try {
     const date = req.query.date
     const shop = req.query.shop
+    console.log(moment().tz("Asia/Bangkok").toString(), ` - getOrderById ${date},${shop},row:${parseInt(req.params.id) + 1}`)
     const sheetId = getSheetsId(shop)
     const doc = new GoogleSpreadsheet(sheetId);
     await doc.useServiceAccountAuth({

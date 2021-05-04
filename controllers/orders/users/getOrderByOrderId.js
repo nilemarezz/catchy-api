@@ -8,7 +8,7 @@ exports.getOrderByOrderId = async (req, res, next) => {
     const date = req.query.date
     const shop = req.query.shop
     const order_id = req.params.order_id
-    console.log(order_id)
+    console.log(moment().tz("Asia/Bangkok").toString(), ` - getOrderByOrderId(user) ${date},${shop},${order_id}`)
     const sheetId = getSheetsId(shop)
     const doc = new GoogleSpreadsheet(sheetId);
     await doc.useServiceAccountAuth({
@@ -33,6 +33,8 @@ exports.getOrderByOrderId = async (req, res, next) => {
         "pay_amount": rows[i]['ยอดที่โอน'] || null,
         "shipping_price": rows[i]['ค่าส่งที่เก็บ'] || null,
         "payment_method": rows[i]['การจัดส่ง'] || null,
+        "address": rows[i]['ที่อยู่'] || null,
+        "slip_link": rows[i]['slip_link'] || null,
         "date": date,
         "shop": shop
       })

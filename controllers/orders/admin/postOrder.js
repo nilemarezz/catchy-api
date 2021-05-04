@@ -1,12 +1,17 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { getSheetsId } = require('../../../helpers/getSheetId')
 const { client_email, private_key } = require('../../../config/cred')
+const { getSheetUserId } = require('../../../helpers/getSheetUserId')
+const moment = require('moment-timezone')
+
 exports.postOrder = async (req, res, next) => {
   try {
     const date = req.query.date
     const shop = req.query.shop
     const sheetId = getSheetsId(shop)
+    console.log(moment().tz("Asia/Bangkok").toString(), ` - postOrder ${date},${shop},${body.account} ,${body.orderId}`)
     const body = req.body
+
     const data = []
     body.product.map((item, i) => {
       data.push({
@@ -31,9 +36,28 @@ exports.postOrder = async (req, res, next) => {
     await doc.loadInfo();
     const sheet = doc.sheetsByTitle[date];
     await sheet.addRows(data)
+    // add to user sheet
+    await postUserSheetOrder(date, shop, data)
     res.status(200).json({ success: true, url: `https://catchy-form-v2.netlify.app/form/${body.orderId}?date=${date}&shop=${shop}` });
   } catch (err) {
     console.log(err)
-    res.status(500).json({ success: false, method: 'post orders  ' });
+    res.status(500).json({ success: false, method: 'post orders  fail' });
+  }
+}
+
+
+const postUserSheetOrder = async (date, shop, data) => {
+  try {
+    const sheetId = getSheetUserId(shop)
+    const doc = new GoogleSpreadsheet(sheetId);
+    await doc.useServiceAccountAuth({
+      client_email: client_email,
+      private_key: private_key.replace(new RegExp("\\\\n", "\g"), "\n"),
+    });
+    await doc.loadInfo();
+    const sheet = doc.sheetsByTitle[date];
+    await sheet.addRows(data)
+  } catch (err) {
+    res.status(500).json({ success: false, method: 'post orders  fail' });
   }
 }

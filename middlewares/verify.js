@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const verifyToken = async (req, res, next) => {
   try {
     const hashPassword = req.headers.authorization
-    console.log(hashPassword)
     if (!hashPassword) {
       res.status(401).json({ success: false, code: 1001 });
     } else {

@@ -7,6 +7,7 @@ exports.getOrders = async (req, res, next) => {
   try {
     const date = req.query.date
     const shop = req.query.shop
+    console.log(moment().tz("Asia/Bangkok").toString(), ` - getOrders ${date},${shop}`)
     const sheetId = getSheetsId(shop)
     const doc = new GoogleSpreadsheet(sheetId);
     await doc.useServiceAccountAuth({
