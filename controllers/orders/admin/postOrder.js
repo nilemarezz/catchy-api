@@ -9,7 +9,6 @@ exports.postOrder = async (req, res, next) => {
     const date = req.query.date
     const shop = req.query.shop
     const sheetId = getSheetsId(shop)
-    console.log(moment().tz("Asia/Bangkok").toString(), ` - postOrder ${date},${shop},${body.account} ,${body.orderId}`)
     const body = req.body
 
     const data = []
@@ -38,6 +37,7 @@ exports.postOrder = async (req, res, next) => {
     await sheet.addRows(data)
     // add to user sheet
     await postUserSheetOrder(date, shop, data)
+    console.log(moment().tz("Asia/Bangkok").toString(), ` - postOrder ${date},${shop},${body.account} ,${body.orderId}`)
     res.status(200).json({ success: true, url: `https://catchy-form-v2.netlify.app/form/${body.orderId}?date=${date}&shop=${shop}` });
   } catch (err) {
     console.log(err)
