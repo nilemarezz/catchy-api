@@ -7,11 +7,10 @@ const moment = require('moment-timezone')
 exports.getItems = async (req, res) => {
     const twitter = req.params.twitter
     const tel = req.params.tel
-    console.log(twitter , tel)
     const year = moment().year();
     const promises = []
     let thisMonth = moment().month() + 1;
-    let beforeMonth = moment().subtract(3, 'months').month() + 1
+    let beforeMonth = moment().subtract(4, 'months').month() + 1
     for (let i = thisMonth; i > beforeMonth; i--) {
         promises.push(getDataPromise(`${i}_${year}`, twitter , tel));
     }
