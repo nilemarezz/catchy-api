@@ -7,6 +7,7 @@ const { patchOrderById } = require('../controllers/orders/admin/patchOrderByRowI
 const { postOrder } = require('../controllers/orders/admin/postOrder')
 const { getOrderByOrderId } = require('../controllers/orders/users/getOrderByOrderId')
 const { patchOrderByOrderId } = require('../controllers/orders/users/patchOrderByOrderId')
+const { getOrderByAccountKR } = require('../controllers/orders/users/getOrderByAccount')
 
 router
   .route("/")
@@ -20,5 +21,8 @@ router
   .route("/user/:order_id")
   .get(getOrderByOrderId)
   .patch(patchOrderByOrderId)
+router
+  .route("/kr/account/:account_id")
+  .get(getOrderByAccountKR)
 
 module.exports = router;
