@@ -9,6 +9,7 @@ const OrderRoute = require('./routes/orders')
 const UserRoute = require('./routes/authen')
 const SearchRoute = require('./routes/search')
 const AdminFormRoute = require('./routes/form-admin')
+const UserFormRoute = require('./routes/form-user')
 
 var http = require("http");
 
@@ -25,6 +26,7 @@ app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
 app.use("/api/search" , SearchRoute)
 app.use("/api/form-admin" , AdminFormRoute)
+app.use("/api/form-user" , UserFormRoute)
 
 setInterval(function() {
   http.get("http://catchy-api.herokuapp.com");

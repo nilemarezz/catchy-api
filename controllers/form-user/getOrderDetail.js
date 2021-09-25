@@ -1,12 +1,12 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { getSheetsId } = require('../../../helpers/getSheetId')
-const { client_email, private_key } = require('../../../config/cred')
+const { getSheetsId } = require('../../helpers/getSheetId')
+const { client_email, private_key } = require('../../config/cred')
 const moment = require('moment-timezone')
 
 exports.getOrderByOrderId = async (req, res, next) => {
   try {
     const date = req.query.date
-    const shop = req.query.shop
+    const shop = "catchy_kr"
     const order_id = req.params.order_id
     console.log(moment().tz("Asia/Bangkok").toString(), ` - getOrderByOrderId(user) ${date},${shop},${order_id}`)
     const sheetId = getSheetsId(shop)
