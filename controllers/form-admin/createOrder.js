@@ -34,5 +34,5 @@ exports.createOrder = async (req, res, next) => {
     await doc.loadInfo();
     const sheet = doc.sheetsByTitle[date];
     await sheet.addRows(rowData)
-    res.status(200).json({ success: true, url: `https://catchy-form-v2.netlify.app/form/${body.orderId}?date=${date}&shop=${shop}` });
+    res.status(200).json({ success: true, url: `https://catchy-form-user.netlify.app/form/${body.orderId}?date=${date}&shop=${shop}` });
 }
