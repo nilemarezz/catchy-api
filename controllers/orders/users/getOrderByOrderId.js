@@ -20,21 +20,22 @@ exports.getOrderByOrderId = async (req, res, next) => {
     const rows = await sheet.getRows();
     const data = []
     for (let i = 0; i < rows.length; i++) {
+      // total2 = ยอดค้างชำระ
       data.push({
         "id": i,
-        "order_id": rows[i]["order_id"] || null,
-        "twitter": rows[i]["@Twitter"] || null,
-        "product_name": rows[i]['รายการ'] || null,
-        "amount": rows[i]['จำนวน'] || null,
-        "amount": rows[i]['จำนวน'] || null,
-        "price": rows[i]['ราคาขาย'] || null,
-        "payment_status": rows[i]['สถานะการจ่ายเงิน'] || null,
-        "image_link": rows[i]['image_link'] || null,
-        "pay_amount": rows[i]['ยอดที่โอน'] || null,
-        "shipping_price": rows[i]['ค่าส่งที่เก็บ'] || null,
-        "payment_method": rows[i]['การจัดส่ง'] || null,
-        "address": rows[i]['ที่อยู่'] || null,
-        "slip_link": rows[i]['slip_link'] || null,
+        "order_id": rows[i]["order_id"] || '',
+        "twitter": rows[i]["@Twitter"] || '',
+        "product_name": rows[i]['รายการ'] || '',
+        "amount": rows[i]['จำนวน'] || '',
+        "amount": rows[i]['จำนวน'] || '',
+        "price": rows[i]['ราคาขาย'] || '',
+        "payment_status": rows[i]['สถานะการจ่ายเงิน'] || '',
+        "image_link": rows[i]['image_link'] || '',
+        "pay_amount": rows[i]['ยอดที่โอน'] || '',
+        "shipping_price": rows[i]['ค่าส่งที่เก็บ'] || '',
+        "payment_method": rows[i]['การจัดส่ง'] || '',
+        "total2": rows[i]['ยอดมัดจำที่เหลือ'] || '',
+        "slip_link": rows[i]['slip_link'] || '',
         "date": date,
         "shop": shop
       })
