@@ -47,7 +47,7 @@ const getDataPromise = async (date, account , tel) => {
     const data = []
     for (let i = 0; i < rows.length; i++) {
         if(rows[i]["เบอร์โทรศัพท์"] !== undefined && rows[i]["เบอร์โทรศัพท์"] !== null){
-        if (rows[i]["@Twitter"] === account && rows[i]["เบอร์โทรศัพท์"].replace("-" , "") === tel) {
+        if (rows[i]["@Twitter"] === account && rows[i]["เบอร์โทรศัพท์"].replaceAll("-" , "") === tel) {
             data.push({
                 "id": i,
                 "order_id": rows[i]["order_id"] || null,
