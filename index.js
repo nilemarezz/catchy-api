@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const OrderRoute = require('./routes/orders')
 const UserRoute = require('./routes/authen')
 const SearchRoute = require('./routes/search')
+const AdminFormRoute = require('./routes/form-admin')
+
 var http = require("http");
 
 app.use(express.static("public"))
@@ -22,6 +24,7 @@ app.get("/api", (req, res) => {
 app.use("/api/orders", OrderRoute);
 app.use("/api/user", UserRoute)
 app.use("/api/search" , SearchRoute)
+app.use("/api/form-admin" , AdminFormRoute)
 
 setInterval(function() {
   http.get("http://catchy-api.herokuapp.com");
