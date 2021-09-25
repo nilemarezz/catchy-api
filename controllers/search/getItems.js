@@ -50,7 +50,8 @@ const getDataPromise = async (date, account, tel) => {
           console.log(rows[i]["เบอร์โทรศัพท์"])
           console.log(typeof rows[i]["เบอร์โทรศัพท์"])
           if (rows[i]["เบอร์โทรศัพท์"] !== undefined && rows[i]["เบอร์โทรศัพท์"] !== null) {
-            if (rows[i]["เบอร์โทรศัพท์"].replaceAll("-", "") === tel) {
+            let telno = rows[i]["เบอร์โทรศัพท์"]
+            if (telno.replaceAll("-", "") === tel) {
               data.push({
                 "id": i,
                 "order_id": rows[i]["order_id"] || null,
