@@ -1,6 +1,6 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { getSheetsId } = require('../../../helpers/getSheetId')
-const { client_email, private_key } = require('../../../config/cred')
+const { getSheetsId } = require('../../helpers/getSheetId')
+const { client_email, private_key } = require('../../config/cred')
 const moment = require('moment-timezone')
 
 exports.getOrderById = async (req, res, next) => {
