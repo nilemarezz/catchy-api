@@ -4,8 +4,6 @@ const app = express()
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-
-const OrderRoute = require('./routes/orders')
 const UserRoute = require('./routes/authen')
 const SearchRoute = require('./routes/search')
 const AdminFormRoute = require('./routes/form-admin')
@@ -24,7 +22,7 @@ app.use(bodyParser.json());
 app.get("/api", (req, res) => {
   res.json({ success: true, user: process.env.CATCHY_USERNAME })
 })
-// app.use("/api/orders", OrderRoute);
+app.use("/api/orders", UserRoute);
 app.use("/api/user", UserRoute)
 app.use("/api/search" , SearchRoute)
 app.use("/api/form-admin" , AdminFormRoute)
