@@ -10,7 +10,7 @@ router
   .get(verifyToken, getAllOrders)
 router
   .route("/statistic")
-  .get(getStat)
+  .get(verifyToken, getStat)
 router
   .route("/:id")
   .get(verifyToken, getOrderById)
