@@ -12,6 +12,7 @@ const ManageRoute = require('./routes/manage')
 
 
 var http = require("http");
+const router = require('./routes/authen');
 
 app.use(express.static("public"))
 
@@ -24,12 +25,13 @@ app.get("/api", (req, res) => {
 })
 app.use("/api/orders", UserRoute);
 app.use("/api/user", UserRoute)
-app.use("/api/search" , SearchRoute)
-app.use("/api/form-admin" , AdminFormRoute)
-app.use("/api/form-user" , UserFormRoute)
-app.use("/api/manage" , ManageRoute)
+app.use("/api/search", SearchRoute)
+app.use("/api/form-admin", AdminFormRoute)
+app.use("/api/form-user", UserFormRoute)
+app.use("/api/manage", ManageRoute)
 
-setInterval(function() {
+
+setInterval(function () {
   http.get("http://catchy-api.herokuapp.com");
 }, 300000); // every 5 minutes (300000)
 
