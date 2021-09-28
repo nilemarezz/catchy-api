@@ -9,7 +9,7 @@ router
   .route("/")
   .get(verifyToken, getAllOrders)
 router
-  .route("/statistic")
+  .route("/statistic/:date")
   .get(verifyToken, getStat)
 router
   .route("/:id")

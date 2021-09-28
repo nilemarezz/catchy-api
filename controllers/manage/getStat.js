@@ -5,7 +5,7 @@ const moment = require('moment-timezone')
 
 exports.getStat = async (req, res, next) => {
     const shop = "catchy_kr"
-    const date = "9_2021"
+    const date = req.params.date
     console.log(moment().tz("Asia/Bangkok").toString(), ` - getOrders ${date},${shop}`)
     const sheetId = getSheetsId(shop)
     const doc = new GoogleSpreadsheet(sheetId);
