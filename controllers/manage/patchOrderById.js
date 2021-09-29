@@ -32,6 +32,9 @@ exports.patchOrderById = async (req, res, next) => {
         rows[id]['ราคาขาย'] = data.price
         rows[id]['ค่าส่งที่เก็บ'] = data.shipping_price,
             rows[id]['ค่าส่งจริง'] = data.shipping_price_real
+        rows[id]['ชื่อ'] = data.name
+        rows[id]['เบอร์โทรศัพท์'] = data.telno
+        rows[id]['ยอดมัดจำที่เหลือ'] = data.total2
         await rows[id].save();
         await patchOrderById(date, shop, data, id)
         res.status(200).json({ success: true, method: 'patch orders ' + req.params.id });

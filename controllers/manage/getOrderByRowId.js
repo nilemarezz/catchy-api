@@ -36,6 +36,9 @@ exports.getOrderById = async (req, res, next) => {
       "price": rows[index]['ราคาขาย'] || null,
       "shipping_price": rows[index]['ค่าส่งที่เก็บ'] || null,
       "shipping_price_real": rows[index]['ค่าส่งจริง'] || null,
+      "name": rows[index]['ชื่อ'] || null,
+      "telno": rows[index]['เบอร์โทรศัพท์'] || null,
+      "total2": rows[index]['ยอดมัดจำที่เหลือ'] || null,
       "shop": shop
     }
 
