@@ -19,7 +19,8 @@ exports.patchOrderById = async (req, res, next) => {
         await doc.loadInfo();
         const sheet = doc.sheetsByTitle[date];
         const rows = await sheet.getRows();
-        rows[id]['Tracking no.'] = data.tracking_no,
+        rows[id]['@Twitter'] = data.twitter,
+            rows[id]['Tracking no.'] = data.tracking_no,
             rows[id]['รายการ'] = data.product_name,
             rows[id]['จำนวน'] = data.amount,
             rows[id]['การจัดส่ง'] = data.shipping_method,
