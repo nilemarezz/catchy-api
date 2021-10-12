@@ -46,7 +46,7 @@ const getDataPromise = async (date, account, tel) => {
       const rows = await sheet.getRows();
       const data = []
       for (let i = 0; i < rows.length; i++) {
-        if (rows[i]["@Twitter"].replace(/\s/g, '').toLowerCase() === account.replace(/\s/g, '').toLowerCase()) {
+        if (rows[i]["@Twitter"].replace(/\s+/g, '').toLowerCase() === account.replace(/\s+/g, '').toLowerCase()) {
           console.log(rows[i]["เบอร์โทรศัพท์"], '..')
           console.log(typeof rows[i]["เบอร์โทรศัพท์"], '...')
           if (rows[i]["เบอร์โทรศัพท์"] !== undefined && rows[i]["เบอร์โทรศัพท์"] !== null) {
