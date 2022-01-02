@@ -7,12 +7,15 @@ const moment = require('moment-timezone')
 exports.getItems = async (req, res) => {
   const twitter = req.params.twitter
   const tel = req.params.tel
-  const year = moment().year();
+  let now;
+  let year;
+  let month;
   const promises = []
-  let thisMonth = moment().month() + 1;
-  let beforeMonth = moment().subtract(4, 'months').month() + 1
-  for (let i = thisMonth; i > beforeMonth; i--) {
-    promises.push(getDataPromise(`${i}_${year}`, twitter, tel));
+  for (let i = 0; i < 4; i++) {
+    now = moment().subtract(i , 'months')
+    year = now.year();
+    month = now.month();
+    promises.push(getDataPromise(`${month + 1}_${year}`, twitter, tel));
   }
   let data = [];
   await Promise.all(promises).then((result) => {
@@ -47,8 +50,7 @@ const getDataPromise = async (date, account, tel) => {
       const data = []
       for (let i = 0; i < rows.length; i++) {
         if (rows[i]["@Twitter"].toLowerCase() === account.toLowerCase()) {
-          console.log(rows[i]["เบอร์โทรศัพท์"], '..')
-          console.log(typeof rows[i]["เบอร์โทรศัพท์"], '...')
+          console.log(`Find : ${rows[i]["เบอร์โทรศัพท์"]} , ${rows[i]["@Twitter"]}`)
           if (rows[i]["เบอร์โทรศัพท์"] !== undefined && rows[i]["เบอร์โทรศัพท์"] !== null) {
             let telno = String(rows[i]["เบอร์โทรศัพท์"])
             if (telno.replace(/-/g, "") === tel) {
