@@ -49,11 +49,12 @@ const getDataPromise = async (date, account, tel) => {
       const rows = await sheet.getRows();
       const data = []
       for (let i = 0; i < rows.length; i++) {
+        if(rows[i]["@Twitter"] !== undefined){
         if (rows[i]["@Twitter"].replace(/\s+/g, '').toLowerCase() === account.replace(/\s+/g, '').toLowerCase()) {
           console.log(`Find : ${rows[i]["เบอร์โทรศัพท์"]} , ${rows[i]["@Twitter"]}`)
           if (rows[i]["เบอร์โทรศัพท์"] !== undefined && rows[i]["เบอร์โทรศัพท์"] !== null) {
             let telno = String(rows[i]["เบอร์โทรศัพท์"])
-            if (telno.replace(/-/g, "") === tel) {
+            if (telno.replace(/-/g, "") === tel.replace(/-/g, "")) {
               data.push({
                 "id": i,
                 "order_id": rows[i]["order_id"] || null,
@@ -71,6 +72,7 @@ const getDataPromise = async (date, account, tel) => {
           }
         }
       }
+    }
       resolve({ date: date, data: data })
     } catch (err) {
       console.log(err)
