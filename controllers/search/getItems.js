@@ -11,7 +11,7 @@ exports.getItems = async (req, res) => {
   let year;
   let month;
   const promises = []
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 6; i++) {
     now = moment().subtract(i , 'months')
     year = now.year();
     month = now.month();
