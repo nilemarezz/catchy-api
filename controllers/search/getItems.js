@@ -15,6 +15,7 @@ exports.getItems = async (req, res) => {
     month = now.month();
     promises.push(getDataPromise(`${month + 1}_${year}`, twitter));
   }
+
   let data = [];
   await Promise.all(promises).then((result) => {
     result.map((item) => {
